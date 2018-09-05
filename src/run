@@ -1,0 +1,7 @@
+#! /usr/bin/env python3
+from gevent.wsgi import WSGIServer
+from app import app
+
+app.logger.info("Запуск приложения host = {0}, port = {1}".format(app.config["HOST"], app.config["PORT"]))
+http_server = WSGIServer((app.config["HOST"], app.config["PORT"]), app)
+http_server.serve_forever()
